@@ -1,0 +1,315 @@
+[PrefixDeclaration]
+:		http://www.proxximos.com/ontology/InfectionTransferRisk#
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+risk:		http://www.proxximos.com/ontology/InfectionTransferRisk#
+
+[MappingDeclaration] @collection [[
+mappingId	MAPID-d1e9a7bb5b064bf9a8d558f9d995e103-PersonMapping
+target		:Person_{Uid} a :Person . 
+source		SELECT Uid FROM dbo.People WHERE IsDeleted = 0;
+
+mappingId	MAPID-acf390305b82460395434ebda594c55c-PersonFirstName
+target		:Person_{Uid} :firstName {FirstName}^^xsd:string . 
+source		SELECT Uid, FirstName FROM dbo.People WHERE IsDeleted = 0;
+
+mappingId	MAPID-b13ebb8a285449f7ad87fcb317966291-PersonLastName
+target		:Person_{Uid} :lastName {LastName}^^xsd:string . 
+source		SELECT Uid, LastName FROM dbo.People WHERE IsDeleted = 0;
+
+mappingId	MAPID-960310be15d14cf4a051d9f7f09408f2-PersonEmail
+target		:Person_{Uid} :personEmail {Email}^^xsd:string . 
+source		SELECT Uid, Email FROM dbo.People WHERE IsDeleted = 0;
+
+mappingId	MAPID-c7171d0ae38e433ea374bb558f0bb174-PersonDOB
+target		:Person_{Uid} :personDateOfBirth {DateOfBirth}^^xsd:dateTime . 
+source		SELECT Uid, DateOfBirth FROM dbo.People WHERE IsDeleted = 0;
+
+mappingId	MAPID-708d01ead5814e38b58a39ea917ed230-PersonRoleMapping
+target		:Person_{Uid} :personRole {Role}^^xsd:string . 
+source		SELECT Uid, Role FROM dbo.People WHERE IsDeleted = 0;
+
+mappingId	MAPID-3075b8feef244e8abb07e02aa21616ae-PersonAffiliatedWithOrganization
+target		:Person_{Uid} :personAffiliatedWithOrganization :Organization_{OrganizationUid} . 
+source		SELECT Uid, OrganizationUid FROM dbo.People WHERE IsDeleted = 0;
+
+mappingId	MAPID-24eb505d85114d3a9802b4e25e2d0b75-CaseMapping
+target		:Case_{Uid} a :Case . 
+source		SELECT Uid FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-d7fcfe13b7c34ea7a8d675306c90deac-CaseUid
+target		:Case_{Uid} :caseUid {Uid}^^xsd:string . 
+source		SELECT Uid FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-8acb02d262c04808aab180fd528ea23f-CasePathogen
+target		:Case_{Uid} :casePathogen {Pathogen}^^xsd:string . 
+source		SELECT Uid, Pathogen FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-c4a2e481defc4c2aa8e93d4fa71c91e6-CaseInfectionSite
+target		:Case_{Uid} :caseInfectionSite {InfectionSite}^^xsd:string . 
+source		SELECT Uid, InfectionSite FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-ba5d108703d64a2cb5b70976a97179ee-CasePolicyCode
+target		:Case_{Uid} :casePolicyCode {PolicyCode}^^xsd:integer . 
+source		SELECT Uid, PolicyCode FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-edc8b0b21a0c47daa547481c013c4f5a-CaseType
+target		:Case_{Uid} :caseType {CaseType}^^xsd:string . 
+source		SELECT Uid, CaseType FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-53802ea26fed490495279c279014df6c- CaseDateOpened
+target		:Case_{Uid} :caseDateOpened {DateOpened}^^xsd:dateTime . 
+source		SELECT Uid, DateOpened FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-454dcb407c124c148696457ef0e05d75-CaseDateClosed
+target		:Case_{Uid} :caseDateClosed {DateClosed}^^xsd:dateTime . 
+source		SELECT Uid, DateClosed FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-cd3c93f2fbb746cc8e6391de38aa1bcd-CaseDateConfirmed
+target		:Case_{Uid} :caseDateConfirmed {DateConfirmed}^^xsd:dateTime . 
+source		SELECT Uid, DateConfirmed FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-b6aa756bf0b340a196229ae0b12b817f-CaseDateRejected
+target		:Case_{Uid} :caseDateRejected {DateRejected}^^xsd:dateTime . 
+source		SELECT Uid, DateRejected FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-c1bb52002f1c47d6b61561641401e17c-CaseLastAnalysisTime
+target		:Case_{Uid} :caseLastAnalysisTime {LastAnalysisTime}^^xsd:dateTime . 
+source		SELECT Uid, LastAnalysisTime FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-79d7366a13354927aa2c321723d1dac0-CaseSymptomsStartTime
+target		:Case_{Uid} :caseSymptomsStartTime {SymptomsStart}^^xsd:dateTime . 
+source		SELECT Uid, SymptomsStart FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-4d838fad5e204fd3a981375f7fd937ee-CaseDateCreated
+target		:Case_{Uid} :caseDateCreated {DateCreated}^^xsd:dateTime . 
+source		SELECT Uid, DateCreated FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-fd9cd50e3a0642638718ee662f74c702-CaseDateModified
+target		:Case_{Uid} :caseDateModified {DateModified}^^xsd:dateTime . 
+source		SELECT Uid, DateModified FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-d522dcde68b8482bacb457ffa420a5bd-CaseHasInfectionSite
+target		:Case_{Uid} :hasInfectionSite :InfectionSite_{InfectionSite} . 
+source		SELECT Uid, InfectionSite FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-10b77a2d30f743ab9847946b64b47431-CaseHasCasePathogen
+target		:Case_{Uid} :hasCasePathogen :RiskAgent_{Pathogen} . 
+source		SELECT Uid, Pathogen FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-7bd7fcd2f9704809b5414b88c2cccd81-CaseManagedByOrganization
+target		:Case_{Uid} :caseManagedByOrganization :Organization_{OrganizationUid} . 
+source		SELECT Uid, OrganizationUid FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-f8dc4d4fd21a4ca7b3ae7b2ee4434ddc-CaseTracksPersonInfection
+target		:Case_{Uid} :tracksPersonInfection :Person_{PersonUid} . 
+source		SELECT Uid, PersonUid FROM dbo.Cases WHERE IsDeleted = 0;
+
+mappingId	MAPID-4e28dee12e6f4a96a4c528915f802224-EncounterMapping
+target		:Encounter_{Uid} a :Encounter . 
+source		SELECT Uid FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-8ee26608e8cc4bbfa2264a692b3ae200-EncounterSourceTagSerial
+target		:Encounter_{Uid} :encounterSourceTagSerial {SourceTagSerial}^^xsd:string . 
+source		SELECT Uid, SourceTagSerial FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-c03ad225b377410687d4f568024abb7d-EncounterContactTagSerial
+target		:Encounter_{Uid} :encounterContactTagSerial {ContactTagSerial}^^xsd:string . 
+source		SELECT Uid, ContactTagSerial FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-fadf1afe4c22408283d1ac346cd844b0-EncounterAverageDistance
+target		:Encounter_{Uid} :encounterAverageDistance {AverageDistance}^^xsd:decimal . 
+source		SELECT Uid, AverageDistance FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-0e570d535676471a9b2721c32889ede5-EncounterStartTime
+target		:Encounter_{Uid} :encounterStartTime {Start}^^xsd:dateTime . 
+source		SELECT Uid, Start FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-9614e57e4ced4a71be221b395abb32ad-EncounterIntensity
+target		:Encounter_{Uid} :encounterIntensity {Intensity}^^xsd:decimal . 
+source		SELECT Uid, Intensity FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-3204406c32b8496aa36f7c0c9263772f-EncounterDateCreated
+target		:Encounter_{Uid} :encounterDateCreated {DateCreated}^^xsd:dateTime . 
+source		SELECT Uid, DateCreated FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-989eb49a576a43b189468111ec5ebdec-EncounterDateModified
+target		:Encounter_{Uid} :encounterDateModified {DateModified}^^xsd:dateTime . 
+source		SELECT Uid, DateModified FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-ae303df845af40169f2274316d4f4dc9-EncounterHasContact
+target		:Encounter_{Uid} :hasContact :Contact_{ContactID} . 
+source		SELECT Uid, ContactID FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-db4e5539d9614e34b2837d0c2746ecd3-EncounterOccursInZone
+target		:Encounter_{Uid} :occursInZone :Zone_{ZoneUid} . 
+source		SELECT Uid, ZoneUid FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-af55c936cab74055bae622fb3477e9d8-EncounterHasSourceTagAssignment
+target		:Encounter_{Uid} :hasSourceTagAssignment :TagAssignment_{SourceTagSerial} . 
+source		SELECT Uid, SourceTagSerial FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-c564b61a89aa497e8666f5e877ac01b8-EncounterHasContactTagAssignment
+target		:Encounter_{Uid} :hasContactTagAssignment :TagAssignment_{ContactTagSerial} . 
+source		SELECT Uid, ContactTagSerial FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-a5c6667c60244be1978e2b21fd7ebaef-EncounterEndTime
+target		:Encounter_{Uid} :encounterEndTime {EndTime}^^xsd:dateTime . 
+source		SELECT Uid, [End] AS EndTime FROM dbo.Encounters WHERE IsDeleted = 0;
+
+mappingId	MAPID-c5062b8cbd50459d973894741b9d6b96-ContactMapping
+target		:Contact_{contactId} a :Contact . 
+source		SELECT Uid AS contactId FROM dbo.Contacts WHERE IsDeleted = 0;
+
+mappingId	MAPID-4c2d8c38b6fe48779b3246d9d01a561b-ContactUid
+target		:Contact_{Uid} :contactUid {Uid}^^xsd:string . 
+source		SELECT Uid FROM dbo.Contacts WHERE IsDeleted = 0;
+
+mappingId	MAPID-3cbe812cd6db42e496b73f1d3ffecb03-ContactTagSerial
+target		:Contact_{Uid} :contactTagSerial {TagSerial}^^xsd:string . 
+source		SELECT Uid, TagSerial FROM dbo.Contacts WHERE IsDeleted = 0;
+
+mappingId	MAPID-7d6a511d665243c5913afc3ef615aa5d-ContactType
+target		:Contact_{Uid} :contactType {ContactType}^^xsd:string . 
+source		SELECT Uid, ContactType FROM dbo.Contacts WHERE IsDeleted = 0;
+
+mappingId	MAPID-69e1395af4aa4a5bab9a388750d8da4e-ContactDateCreated
+target		:Contact_{Uid} :contactDateCreated {DateCreated}^^xsd:dateTime . 
+source		SELECT Uid, DateCreated FROM dbo.Contacts WHERE IsDeleted = 0;
+
+mappingId	MAPID-4a45ee4f39374206a691db17557e46d2-ContactDateModified
+target		:Contact_{Uid} :contactDateModified {DateModified}^^xsd:dateTime . 
+source		SELECT Uid, DateModified FROM dbo.Contacts WHERE IsDeleted = 0;
+
+mappingId	MAPID-2b43c2a90bbf4a3e88e821058e26fbdd-TagAssignmentMapping
+target		:TagAssignment_{uid} a :TagAssignment . 
+source		SELECT Uid AS uid FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-7719d94b90c64f51b5108dc78f4002f0-TagAssignmentTagSerial
+target		:TagAssignment_{uid} :tagAssignmenTagSerial {Serial}^^xsd:string . 
+source		SELECT Uid AS uid, Serial FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-6f14c37a315b4a0e951589f0bc8cfd5e-TagAssignmentEndTimeMapping
+target		:TagAssignment_{uid} :tagAssignmentEndTime {endTime}^^xsd:dateTime . 
+source		SELECT Uid AS uid, [End] AS endTime FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-1122cd20fb304e3296d422d66ee0f0a9-TagAssignmentStartTime
+target		:TagAssignment_{uid} :tagAssignmentStartTime {Start}^^xsd:dateTime . 
+source		SELECT Uid AS uid, Start FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-c2700bb1ff424e41868645f2e5b8d489-TagAssignmentDateCreated
+target		:TagAssignment_{uid} :tagAssignmentDateCreated {DateCreated}^^xsd:dateTime . 
+source		SELECT Uid AS uid, DateCreated FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-df66462e54f94d0c992cd880ce346507-TagAssignmentDateModified
+target		:TagAssignment_{uid} :tagAssignmentDateModified {DateModified}^^xsd:dateTime . 
+source		SELECT Uid AS uid, DateModified FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-992f33873fe04e2fa9117fe2b1293889-TagAssignmentHasTag
+target		:TagAssignment_{uid} :hasTagAssignment :Tag_{tagId} . 
+source		SELECT Uid AS uid, TagID AS tagId FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-fdf26a6a1cf9473286048abbe0f0114a-TagAssignmentAssignedToPerson
+target		:TagAssignment_{uid} :assignedToPerson :Person_{personId} . 
+source		SELECT Uid AS uid, PersonUid AS personId FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-b4f4f26e4b5e4325ad50697dafa962fb-TagAssignmentAssignedToAsset
+target		:TagAssignment_{uid} :assignedToAsset :Asset_{assetId} . 
+source		SELECT Uid AS uid, AssetUid AS assetId FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-a616aa6049ee4af88355f559ece085e6-TagMapping
+target		:Tag_{uid} a :Tag . 
+source		SELECT Uid AS uid FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-a0b0cd58eae44190af359bf24c468398-TagSerial
+target		:Tag_{uid} :tagSerial {Serial}^^xsd:string . 
+source		SELECT Uid AS uid, Serial FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-cfb46d7df7dd450fadf1665a3f5591ed-TagElectronicsId
+target		:Tag_{uid} :tagElectronicsId {ElectronicsId}^^xsd:string . 
+source		SELECT Uid AS uid, ElectronicsId FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-8a04745566a74b09a1e98042fe121c3a-TagElectronicsType
+target		:Tag_{uid} :tagElectronicsType {ElectronicsType}^^xsd:string . 
+source		SELECT Uid AS uid, ElectronicsType FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-e310896b0e6741a186cffbe5fabd2f58-TagHardwareVersion
+target		:Tag_{uid} :tagHardwareVersion {HardwareVersion}^^xsd:string . 
+source		SELECT Uid AS uid, HardwareVersion FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-c43abd359dde490f9faa255c7822d51b-TagFirmwareVersion
+target		:Tag_{uid} :tagFirmwareVersion {FirmwareVersion}^^xsd:string . 
+source		SELECT Uid AS uid, FirmwareVersion FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-a1df326e07c64ac3ab3258a99f018754-TagOrganizationUid
+target		:Tag_{uid} :tagOrganizationUid {OrganizationUid}^^xsd:string . 
+source		SELECT Uid AS uid, OrganizationUid FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-2050b2978b014c6cb871689a95236868-TagDateCreated
+target		:Tag_{uid} :tagDateCreated {DateCreated}^^xsd:dateTime . 
+source		SELECT Uid AS uid, DateCreated FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-46ae760106cd407b8c59eb6cae222761-TagDateModified
+target		:Tag_{uid} :tagDateModified {DateModified}^^xsd:dateTime . 
+source		SELECT Uid AS uid, DateModified FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-ee7cb47a92fd435c8f07e6148c715be2-TagPositionBlockMapping
+target		:TagPositionBlock_{uid} a :TagPositionBlock . 
+source		SELECT Uid AS uid FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-12d71c2a919e4948be2f4f220a815092-TagPositionBlockUid
+target		:TagPositionBlock_{uid} :tagPositionBlockUid {uid}^^xsd:string . 
+source		SELECT Uid AS uid FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-8681d7094cac45719193a90708481dec-TagPositionBlockTagSerial
+target		:TagPositionBlock_{uid} :tagPositionBlockTagSerial {TagSerial}^^xsd:string . 
+source		SELECT Uid AS uid, TagSerial FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-98d17c341e9b425eaac3a48e4ace17c8-TagPositionBlockPosition
+target		:TagPositionBlock_{uid} :tagPositionBlockPosition {Position}^^xsd:string . 
+source		SELECT Uid AS uid, CAST(Position AS VARCHAR(400)) AS Position FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-c2f2895074844a96bf99b6efa6d95bf3-TagPositionBlockTimestamp
+target		:TagPositionBlock_{uid} :tagPositionBlockTimestamp {Timestamp}^^xsd:dateTime . 
+source		SELECT Uid AS uid, Timestamp FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-bf4ed8c944cc4e3e8ea86964a482cee4-TagPositionBlockTimestampMinute
+target		:TagPositionBlock_{uid} :tagPositionBlockTimestampMinute {TimestampMinute}^^xsd:dateTime . 
+source		SELECT Uid AS uid, TimestampMinute FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-ca615637c1694f5cab7a9fe936d9e700-TagPositionBlockDuration
+target		:TagPositionBlock_{uid} :tagPositionBlockDuration {Duration}^^xsd:integer . 
+source		SELECT Uid AS uid, Duration FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-f04b77be5c1741de8d1c0b07bb16dbd0-TagPositionBlockTagPositionMaxID
+target		:TagPositionBlock_{uid} :tagPositionBlockTagPositionMaxID {TagPositionMaxID}^^xsd:integer . 
+source		SELECT Uid AS uid, TagPositionMaxID FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-d019203d00294ceb931cd76216323bec-OrganizationMapping
+target		:Organization_{uid} a :Organization . 
+source		SELECT Uid AS uid FROM dbo.Organizations WHERE IsDeleted = 0;
+
+mappingId	MAPID-497952603041471fb632f2a5fcdff115-OrganizationName
+target		:Organization_{uid} :organizationName {Name}^^xsd:string . 
+source		SELECT Uid AS uid, Name FROM dbo.Organizations WHERE IsDeleted = 0;
+
+mappingId	MAPID-43057a86d6a941eca0359f1e103d44cb-OrganizationDateCreated
+target		:Organization_{uid} :organizationDateCreated {DateCreated}^^xsd:dateTime . 
+source		SELECT Uid AS uid, DateCreated FROM dbo.Organizations WHERE IsDeleted = 0;
+
+mappingId	MAPID-b1e8f5d9c43b4185ae329d392d4bfce5-OrganizationDateModified
+target		:Organization_{uid} :organizationDateModified {DateModified}^^xsd:dateTime . 
+source		SELECT Uid AS uid, DateModified FROM dbo.Organizations WHERE IsDeleted = 0;
+
+mappingId	MAPID-97aa8415e9714a94872b49c327705604-TagAssignmentHasCaseMapping-test-view
+target		:TagAssignment_{uid} :hasCase :Case_{caseId} . 
+source		SELECT Uid AS uid, CaseId AS caseId FROM v_tag_assignments_by_case WHERE IsDeleted = 0;
+
+mappingId	MAPID-efa7d018d81c43b4a9910e3e67630cc7-TagPositionBlockOccursInZoneMapping-test
+target		:TagPositionBlock_{uid} :occursInZone :Zone_{zoneUid} . 
+source		SELECT Uid AS uid, ZoneUid AS zoneUid FROM dbo.TagPositionBlocks;
+]]

@@ -1,0 +1,1589 @@
+@prefix : <http://www.proxximos.com/ontology/InfectionTransferRisk#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix obda: <https://w3id.org/obda/vocabulary#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix risk: <http://www.proxximos.com/ontology/InfectionTransferRisk#> .
+@base <http://www.proxximos.com/ontology/InfectionTransferRisk#> .
+
+<http://www.proxximos.com/ontology/InfectionTransferRisk> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#assetManagedByOrganization
+risk:assetManagedByOrganization rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf owl:topObjectProperty ;
+                                rdfs:domain risk:Asset ;
+                                rdfs:range risk:Organization .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#assetTypeManagedByOrganization
+risk:assetTypeManagedByOrganization rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#assignedToAsset
+risk:assignedToAsset rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:domain risk:TagAssignment ;
+                     rdfs:range risk:Asset .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#assignedToPerson
+risk:assignedToPerson rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain risk:TagAssignment ;
+                      rdfs:range risk:Person .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseForAnalysis
+risk:caseForAnalysis rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:domain risk:CaseAnalysis ;
+                     rdfs:range risk:Case .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseManagedByOrganization
+risk:caseManagedByOrganization rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf owl:topObjectProperty ;
+                               rdfs:domain risk:Case ;
+                               rdfs:range risk:Organization .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#contactForCase
+risk:contactForCase rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain risk:Contact ;
+                    rdfs:range risk:Case .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#distanceBetweenTag1
+risk:distanceBetweenTag1 rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain risk:PairwiseDistance ;
+                         rdfs:range risk:Tag .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#distanceBetweenTag2
+risk:distanceBetweenTag2 rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain risk:PairwiseDistance ;
+                         rdfs:range risk:Tag .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasAssetType
+risk:hasAssetType rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasCase
+risk:hasCase rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain risk:TagAssignment ;
+             rdfs:range risk:Case ;
+             rdfs:comment "Test property for bd view mapping" .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasCasePathogen
+risk:hasCasePathogen rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:domain risk:Case ;
+                     rdfs:range risk:Pathogen .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasContact
+risk:hasContact rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                owl:inverseOf risk:hasEncounter ;
+                rdfs:domain risk:Encounter ;
+                rdfs:range risk:Contact .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasContactTagAssignment
+risk:hasContactTagAssignment rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf owl:topObjectProperty ;
+                             rdfs:domain risk:Encounter ;
+                             rdfs:range risk:TagAssignment .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasEncounter
+risk:hasEncounter rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain risk:Contact ;
+                  rdfs:range risk:Encounter .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasInfectionSite
+risk:hasInfectionSite rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain risk:Case ;
+                      rdfs:range risk:InfectionSite .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasPathogenPolicy
+risk:hasPathogenPolicy rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf owl:topObjectProperty ;
+                       owl:inverseOf risk:policySetByOrganization ;
+                       rdfs:domain risk:Organization ;
+                       rdfs:range risk:PathogenPolicy .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasSite
+risk:hasSite rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain risk:Installation ;
+             rdfs:range risk:Site .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasSourceTagAssignment
+risk:hasSourceTagAssignment rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf owl:topObjectProperty ;
+                            rdfs:domain risk:Encounter ;
+                            rdfs:range risk:TagAssignment .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasTagAssignment
+risk:hasTagAssignment rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain risk:TagAssignment ;
+                      rdfs:range risk:Tag .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#inDeploymentZone
+risk:inDeploymentZone rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain risk:PairwiseDistance ;
+                      rdfs:range risk:Zone .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#isAreaOfInstallation
+risk:isAreaOfInstallation rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf owl:topObjectProperty ;
+                          rdfs:domain risk:Area ;
+                          rdfs:range risk:Installation .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#locatedInArea
+risk:locatedInArea rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:domain risk:Zone ;
+                   rdfs:range risk:Area .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapOfArea
+risk:mapOfArea rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain risk:Map ;
+               rdfs:range risk:Area .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#occursInZone
+risk:occursInZone rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain risk:Encounter ;
+                  rdfs:range risk:Zone .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#personAffiliatedWithOrganization
+risk:personAffiliatedWithOrganization rdf:type owl:ObjectProperty ;
+                                      rdfs:subPropertyOf owl:topObjectProperty ;
+                                      rdfs:domain risk:Person ;
+                                      rdfs:range risk:Organization .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#policyForInfectionSite
+risk:policyForInfectionSite rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf owl:topObjectProperty ;
+                            rdfs:domain risk:PathogenPolicy ;
+                            rdfs:range risk:InfectionSite .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#policyForPathogen
+risk:policyForPathogen rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf owl:topObjectProperty ;
+                       rdfs:domain risk:PathogenPolicy ;
+                       rdfs:range risk:Pathogen .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#policySetByOrganization
+risk:policySetByOrganization rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf owl:topObjectProperty ;
+                             rdfs:domain risk:PathogenPolicy ;
+                             rdfs:range risk:Organization .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#recordedInInstallation
+risk:recordedInInstallation rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf owl:topObjectProperty ;
+                            rdfs:domain risk:TagPosition ;
+                            rdfs:range risk:Installation .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#serialForTagPosition
+risk:serialForTagPosition rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf owl:topObjectProperty ;
+                          rdfs:domain risk:TagPosition ;
+                          rdfs:range risk:Tag .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#siteOperatedByOrganization
+risk:siteOperatedByOrganization rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf owl:topObjectProperty ;
+                                rdfs:domain risk:Site ;
+                                rdfs:range risk:Organization .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tracksPersonInfection
+risk:tracksPersonInfection rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf owl:topObjectProperty ;
+                           rdfs:domain risk:PersonInfectionCase ;
+                           rdfs:range risk:Person .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#areaDateCreated
+risk:areaDateCreated rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf risk:dateCreated ;
+                     rdfs:domain risk:Area .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#areaDateModified
+risk:areaDateModified rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf risk:dateModified ;
+                      rdfs:domain risk:Area .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#areaName
+risk:areaName rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf risk:hasName ;
+              rdfs:domain risk:Area .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#areaUid
+risk:areaUid rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf risk:hasUid ;
+             rdfs:domain risk:Area .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#assetDateCreated
+risk:assetDateCreated rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf risk:dateCreated ;
+                      rdfs:domain risk:Asset .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#assetDateModified
+risk:assetDateModified rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf risk:dateModified ;
+                       rdfs:domain risk:Asset .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#assetName
+risk:assetName rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf risk:hasName ;
+               rdfs:domain risk:Asset .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#assetSerial
+risk:assetSerial rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain risk:Asset ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#assetTypeName
+risk:assetTypeName rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf risk:hasName .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#assetUid
+risk:assetUid rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf risk:hasUid ;
+              rdfs:domain risk:Asset .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseAnalysisCompletedTime
+risk:caseAnalysisCompletedTime rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf owl:topDataProperty ;
+                               rdfs:domain risk:CaseAnalysis ;
+                               rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseAnalysisDateCreated
+risk:caseAnalysisDateCreated rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf risk:dateCreated ;
+                             rdfs:domain risk:CaseAnalysis .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseAnalysisDateModified
+risk:caseAnalysisDateModified rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf risk:dateModified ;
+                              rdfs:domain risk:CaseAnalysis .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseAnalysisInstanceId
+risk:caseAnalysisInstanceId rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf owl:topDataProperty ;
+                            rdfs:domain risk:CaseAnalysis ;
+                            rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseAnalysisStartTime
+risk:caseAnalysisStartTime rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf owl:topDataProperty ;
+                           rdfs:domain risk:CaseAnalysis ;
+                           rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseAnalysisStatusUrl
+risk:caseAnalysisStatusUrl rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf owl:topDataProperty ;
+                           rdfs:domain risk:CaseAnalysis ;
+                           rdfs:range xsd:anyURI .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseDateClosed
+risk:caseDateClosed rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain risk:Case ;
+                    rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseDateConfirmed
+risk:caseDateConfirmed rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:domain risk:Case ;
+                       rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseDateCreated
+risk:caseDateCreated rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf risk:dateCreated ;
+                     rdfs:domain risk:Case .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseDateModified
+risk:caseDateModified rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf risk:dateModified ;
+                      rdfs:domain risk:Case .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseDateOpened
+risk:caseDateOpened rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain risk:Case ;
+                    rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseDateRejected
+risk:caseDateRejected rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdfs:domain risk:Case ;
+                      rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseInfectionSite
+risk:caseInfectionSite rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:domain risk:Case ;
+                       rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseLastAnalysisTime
+risk:caseLastAnalysisTime rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf owl:topDataProperty ;
+                          rdfs:domain risk:Case ;
+                          rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#casePathogen
+risk:casePathogen rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain risk:Case ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#casePolicyCode
+risk:casePolicyCode rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain risk:Case ;
+                    rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseSymptomsStartTime
+risk:caseSymptomsStartTime rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf owl:topDataProperty ;
+                           rdfs:domain risk:Case ;
+                           rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseType
+risk:caseType rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain risk:Case ;
+              rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#caseUid
+risk:caseUid rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf risk:hasUid ;
+             rdfs:domain risk:Case .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#contactDateCreated
+risk:contactDateCreated rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf risk:dateCreated ;
+                        rdfs:domain risk:Contact .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#contactDateModified
+risk:contactDateModified rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf risk:dateModified ;
+                         rdfs:domain risk:Contact .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#contactTagSerial
+risk:contactTagSerial rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdfs:domain risk:Contact ;
+                      rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#contactType
+risk:contactType rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain risk:Contact ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#contactUid
+risk:contactUid rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf risk:hasUid ;
+                rdfs:domain risk:Contact .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#dateCreated
+risk:dateCreated rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#dateModified
+risk:dateModified rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#encounterAverageDistance
+risk:encounterAverageDistance rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty ;
+                              rdfs:domain risk:Encounter ;
+                              rdfs:range xsd:decimal .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#encounterContactTagSerial
+risk:encounterContactTagSerial rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf owl:topDataProperty ;
+                               rdfs:domain risk:Encounter ;
+                               rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#encounterDateCreated
+risk:encounterDateCreated rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf risk:dateCreated ;
+                          rdfs:domain risk:Encounter .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#encounterDateModified
+risk:encounterDateModified rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf risk:dateModified ;
+                           rdfs:domain risk:Encounter .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#encounterEndTime
+risk:encounterEndTime rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdfs:domain risk:Encounter ;
+                      rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#encounterIntensity
+risk:encounterIntensity rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain risk:Encounter ;
+                        rdfs:range xsd:decimal .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#encounterSourceTagSerial
+risk:encounterSourceTagSerial rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty ;
+                              rdfs:domain risk:Encounter ;
+                              rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#encounterStartTime
+risk:encounterStartTime rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain risk:Encounter ;
+                        rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#firstName
+risk:firstName rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf risk:hasName ;
+               rdfs:domain risk:Person .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasName
+risk:hasName rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasUid
+risk:hasUid rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#infectionSiteCode
+risk:infectionSiteCode rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:domain risk:InfectionSite ;
+                       rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#infectionSiteDateCreated
+risk:infectionSiteDateCreated rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf risk:dateCreated ;
+                              rdfs:domain risk:InfectionSite .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#infectionSiteDateModified
+risk:infectionSiteDateModified rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf risk:dateModified ;
+                               rdfs:domain risk:InfectionSite .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#infectionSiteDescription
+risk:infectionSiteDescription rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty ;
+                              rdfs:domain risk:InfectionSite ;
+                              rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#infectionSiteName
+risk:infectionSiteName rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf risk:hasName ;
+                       rdfs:domain risk:InfectionSite .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#infectionSiteUid
+risk:infectionSiteUid rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf risk:hasUid ;
+                      rdfs:domain risk:InfectionSite .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#installationDateCreated
+risk:installationDateCreated rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf risk:dateCreated ;
+                             rdfs:domain risk:Installation .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#installationDateModified
+risk:installationDateModified rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf risk:dateModified ;
+                              rdfs:domain risk:Installation .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#installationIsActive
+risk:installationIsActive rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf owl:topDataProperty ;
+                          rdfs:domain risk:Installation .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#installationName
+risk:installationName rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf risk:hasName ;
+                      rdfs:domain risk:Installation .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#installationUid
+risk:installationUid rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf risk:hasUid ;
+                     rdfs:domain risk:Installation .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#lastName
+risk:lastName rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf risk:hasName ;
+              rdfs:domain risk:Person .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapDateCreated
+risk:mapDateCreated rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf risk:dateCreated ;
+                    rdfs:domain risk:Map .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapDateModified
+risk:mapDateModified rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf risk:dateModified ;
+                     rdfs:domain risk:Map .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapExternalImageKey
+risk:mapExternalImageKey rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdfs:domain risk:Map ;
+                         rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapGeolocation0
+risk:mapGeolocation0 rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain risk:Map ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapGeolocation1
+risk:mapGeolocation1 rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain risk:Map ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapGeolocation2
+risk:mapGeolocation2 rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain risk:Map ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapHeight
+risk:mapHeight rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain risk:Map ;
+               rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapImageUrl
+risk:mapImageUrl rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain risk:Map ;
+                 rdfs:range xsd:anyURI .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapName
+risk:mapName rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf risk:hasName ;
+             rdfs:domain risk:Map .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapOrigin
+risk:mapOrigin rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain risk:Map ;
+               rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapPixelScaleX
+risk:mapPixelScaleX rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain risk:Map ;
+                    rdfs:range xsd:decimal .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapPixelScaleY
+risk:mapPixelScaleY rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain risk:Map ;
+                    rdfs:range xsd:decimal .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapPosition0
+risk:mapPosition0 rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain risk:Map ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapPosition1
+risk:mapPosition1 rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain risk:Map ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapUid
+risk:mapUid rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf risk:hasUid ;
+            rdfs:domain risk:Map .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#mapWidth
+risk:mapWidth rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain risk:Map ;
+              rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#organizationDateCreated
+risk:organizationDateCreated rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf risk:dateCreated ;
+                             rdfs:domain risk:Organization .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#organizationDateModified
+risk:organizationDateModified rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf risk:dateModified ;
+                              rdfs:domain risk:Organization .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#organizationName
+risk:organizationName rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf risk:hasName ;
+                      rdfs:domain risk:Organization .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#organizationUid
+risk:organizationUid rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf risk:hasUid ;
+                     rdfs:domain risk:Organization .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pairwiseDistance
+risk:pairwiseDistance rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdfs:domain risk:PairwiseDistance ;
+                      rdfs:range xsd:decimal .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pairwiseIsInterpolated
+risk:pairwiseIsInterpolated rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf owl:topDataProperty ;
+                            rdfs:domain risk:PairwiseDistance ;
+                            rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pairwiseTagPositionBlockID
+risk:pairwiseTagPositionBlockID rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf owl:topDataProperty ;
+                                rdfs:domain risk:PairwiseDistance ;
+                                rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pairwiseTimestampBlock
+risk:pairwiseTimestampBlock rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf owl:topDataProperty ;
+                            rdfs:domain risk:PairwiseDistance ;
+                            rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenCode
+risk:pathogenCode rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain risk:Pathogen ;
+                  rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenDateCreated
+risk:pathogenDateCreated rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf risk:dateCreated ;
+                         rdfs:domain risk:Pathogen .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenDateModified
+risk:pathogenDateModified rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf risk:dateModified ;
+                          rdfs:domain risk:Pathogen .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenDescription
+risk:pathogenDescription rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdfs:domain risk:Pathogen ;
+                         rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenName
+risk:pathogenName rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf risk:hasName ;
+                  rdfs:domain risk:Pathogen .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyAbbreviation
+risk:pathogenPolicyAbbreviation rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf owl:topDataProperty ;
+                                rdfs:domain risk:PathogenPolicy ;
+                                rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyCode
+risk:pathogenPolicyCode rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain risk:PathogenPolicy ;
+                        rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyDateCreated
+risk:pathogenPolicyDateCreated rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf risk:dateCreated ;
+                               rdfs:domain risk:PathogenPolicy .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyDateModified
+risk:pathogenPolicyDateModified rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf risk:dateModified ;
+                                rdfs:domain risk:PathogenPolicy .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyDescription
+risk:pathogenPolicyDescription rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf owl:topDataProperty ;
+                               rdfs:domain risk:PathogenPolicy ;
+                               rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyDistanceBoundaryBufferCm
+risk:pathogenPolicyDistanceBoundaryBufferCm rdf:type owl:DatatypeProperty ;
+                                            rdfs:subPropertyOf owl:topDataProperty ;
+                                            rdfs:domain risk:PathogenPolicy ;
+                                            rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyDistanceBoundaryCm
+risk:pathogenPolicyDistanceBoundaryCm rdf:type owl:DatatypeProperty ;
+                                      rdfs:subPropertyOf owl:topDataProperty ;
+                                      rdfs:domain risk:PathogenPolicy ;
+                                      rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyDurationBoundaryBufferMinutes
+risk:pathogenPolicyDurationBoundaryBufferMinutes rdf:type owl:DatatypeProperty ;
+                                                 rdfs:subPropertyOf owl:topDataProperty ;
+                                                 rdfs:domain risk:PathogenPolicy ;
+                                                 rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyDurationBoundaryMinutes
+risk:pathogenPolicyDurationBoundaryMinutes rdf:type owl:DatatypeProperty ;
+                                           rdfs:subPropertyOf owl:topDataProperty ;
+                                           rdfs:domain risk:PathogenPolicy ;
+                                           rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyIncubationPeriodMaxHours
+risk:pathogenPolicyIncubationPeriodMaxHours rdf:type owl:DatatypeProperty ;
+                                            rdfs:subPropertyOf owl:topDataProperty ;
+                                            rdfs:domain risk:PathogenPolicy ;
+                                            rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyIncubationPeriodMinHours
+risk:pathogenPolicyIncubationPeriodMinHours rdf:type owl:DatatypeProperty ;
+                                            rdfs:subPropertyOf owl:topDataProperty ;
+                                            rdfs:domain risk:PathogenPolicy ;
+                                            rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyIndirectLingerMinutes
+risk:pathogenPolicyIndirectLingerMinutes rdf:type owl:DatatypeProperty ;
+                                         rdfs:subPropertyOf owl:topDataProperty ;
+                                         rdfs:domain risk:PathogenPolicy ;
+                                         rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyInfectionSite
+risk:pathogenPolicyInfectionSite rdf:type owl:DatatypeProperty ;
+                                 rdfs:subPropertyOf owl:topDataProperty ;
+                                 rdfs:domain risk:PathogenPolicy ;
+                                 rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyInfectiousDaysAfterSymptoms
+risk:pathogenPolicyInfectiousDaysAfterSymptoms rdf:type owl:DatatypeProperty ;
+                                               rdfs:subPropertyOf owl:topDataProperty ;
+                                               rdfs:domain risk:PathogenPolicy ;
+                                               rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyInfectiousDaysBeforeSymptoms
+risk:pathogenPolicyInfectiousDaysBeforeSymptoms rdf:type owl:DatatypeProperty ;
+                                                rdfs:subPropertyOf owl:topDataProperty ;
+                                                rdfs:domain risk:PathogenPolicy ;
+                                                rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyIsAirborne
+risk:pathogenPolicyIsAirborne rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyIsDirect
+risk:pathogenPolicyIsDirect rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyIsDroplet
+risk:pathogenPolicyIsDroplet rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyIsIndirect
+risk:pathogenPolicyIsIndirect rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyName
+risk:pathogenPolicyName rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf risk:hasName ;
+                        rdfs:domain risk:PathogenPolicy .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenPolicyPathogen
+risk:pathogenPolicyPathogen rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#pathogenUid
+risk:pathogenUid rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf risk:hasUid ;
+                 rdfs:domain risk:Pathogen .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#personDateCreated
+risk:personDateCreated rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf risk:dateCreated ;
+                       rdfs:domain risk:Person .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#personDateModified
+risk:personDateModified rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf risk:dateModified ;
+                        rdfs:domain risk:Person .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#personDateOfBirth
+risk:personDateOfBirth rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:domain risk:Person ;
+                       rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#personEmail
+risk:personEmail rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain risk:Person ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#personHealthcareIdentifier
+risk:personHealthcareIdentifier rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf owl:topDataProperty ;
+                                rdfs:domain risk:Person ;
+                                rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#personRole
+risk:personRole rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain risk:Person ;
+                rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#personUid
+risk:personUid rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf risk:hasUid ;
+               rdfs:domain risk:Person .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#rtlsSystem
+risk:rtlsSystem rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain risk:Installation ;
+                rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#siteDateCreated
+risk:siteDateCreated rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf risk:dateCreated ;
+                     rdfs:domain risk:Site .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#siteDateModified
+risk:siteDateModified rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf risk:dateModified ;
+                      rdfs:domain risk:Site .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#siteName
+risk:siteName rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf risk:hasName ;
+              rdfs:domain risk:Site .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#siteUid
+risk:siteUid rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf risk:hasUid ;
+             rdfs:domain risk:Site .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagAssignmenTagSerial
+risk:tagAssignmenTagSerial rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf owl:topDataProperty ;
+                           rdfs:domain risk:TagAssignment ;
+                           rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagAssignmentDateCreated
+risk:tagAssignmentDateCreated rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf risk:dateCreated ;
+                              rdfs:domain risk:TagAssignment .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagAssignmentDateModified
+risk:tagAssignmentDateModified rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf risk:dateModified ;
+                               rdfs:domain risk:TagAssignment .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagAssignmentEndTime
+risk:tagAssignmentEndTime rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf owl:topDataProperty ;
+                          rdfs:domain risk:TagAssignment ;
+                          rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagAssignmentStartTime
+risk:tagAssignmentStartTime rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf owl:topDataProperty ;
+                            rdfs:domain risk:TagAssignment ;
+                            rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagDateCreated
+risk:tagDateCreated rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf risk:dateCreated ;
+                    rdfs:domain risk:Tag .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagDateModified
+risk:tagDateModified rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf risk:dateModified ;
+                     rdfs:domain risk:Tag .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagElectronicsId
+risk:tagElectronicsId rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdfs:domain risk:Tag ;
+                      rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagElectronicsType
+risk:tagElectronicsType rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain risk:Tag ;
+                        rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagFirmwareVersion
+risk:tagFirmwareVersion rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain risk:Tag ;
+                        rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagHardwareVersion
+risk:tagHardwareVersion rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain risk:Tag ;
+                        rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagOrganizationUid
+risk:tagOrganizationUid rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain risk:Tag ;
+                        rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionBlockDuration
+risk:tagPositionBlockDuration rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty ;
+                              rdfs:domain risk:TagPositionBlock ;
+                              rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionBlockIsInterpolated
+risk:tagPositionBlockIsInterpolated rdf:type owl:DatatypeProperty ;
+                                    rdfs:subPropertyOf owl:topDataProperty ;
+                                    rdfs:domain risk:TagPositionBlock .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionBlockPosition
+risk:tagPositionBlockPosition rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty ;
+                              rdfs:domain risk:TagPositionBlock ;
+                              rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionBlockTagPositionMaxID
+risk:tagPositionBlockTagPositionMaxID rdf:type owl:DatatypeProperty ;
+                                      rdfs:subPropertyOf owl:topDataProperty ;
+                                      rdfs:domain risk:TagPositionBlock ;
+                                      rdfs:range xsd:integer .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionBlockTagSerial
+risk:tagPositionBlockTagSerial rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf owl:topDataProperty ;
+                               rdfs:domain risk:TagPositionBlock ;
+                               rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionBlockTimestamp
+risk:tagPositionBlockTimestamp rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf owl:topDataProperty ;
+                               rdfs:domain risk:TagPositionBlock ;
+                               rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionBlockTimestampMinute
+risk:tagPositionBlockTimestampMinute rdf:type owl:DatatypeProperty ;
+                                     rdfs:subPropertyOf owl:topDataProperty ;
+                                     rdfs:domain risk:TagPositionBlock ;
+                                     rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionBlockUid
+risk:tagPositionBlockUid rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf risk:hasUid ;
+                         rdfs:domain risk:TagPositionBlock .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionDateCreated
+risk:tagPositionDateCreated rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf risk:dateCreated ;
+                            rdfs:domain risk:TagPosition .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionDateModified
+risk:tagPositionDateModified rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf risk:dateModified ;
+                             rdfs:domain risk:TagPosition .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionElectronicsId
+risk:tagPositionElectronicsId rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty ;
+                              rdfs:domain risk:TagPosition ;
+                              rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionPosition
+risk:tagPositionPosition rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdfs:domain risk:TagPosition ;
+                         rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionTimestamp
+risk:tagPositionTimestamp rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf owl:topDataProperty ;
+                          rdfs:domain risk:TagPosition ;
+                          rdfs:range xsd:dateTime .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionUid
+risk:tagPositionUid rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf risk:hasUid ;
+                    rdfs:domain risk:TagPosition .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagSerial
+risk:tagSerial rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain risk:Tag ;
+               rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagUid
+risk:tagUid rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf risk:hasUid ;
+            rdfs:domain risk:Tag .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#zoneDateCreated
+risk:zoneDateCreated rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf risk:dateCreated ;
+                     rdfs:domain risk:Zone .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#zoneDateModified
+risk:zoneDateModified rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf risk:dateModified ;
+                      rdfs:domain risk:Zone .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#zoneIsActive
+risk:zoneIsActive rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain risk:Zone .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#zoneName
+risk:zoneName rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf risk:hasName ;
+              rdfs:domain risk:Zone .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#zonePolygon
+risk:zonePolygon rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain risk:Zone ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#zoneUid
+risk:zoneUid rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf risk:hasUid ;
+             rdfs:domain risk:Zone .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Area
+risk:Area rdf:type owl:Class ;
+          rdfs:subClassOf risk:Location ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty risk:isAreaOfInstallation ;
+                            owl:someValuesFrom risk:Installation
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty risk:areaDateCreated ;
+                            owl:someValuesFrom xsd:dateTime
+                          ] .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Asset
+risk:Asset rdf:type owl:Class ;
+           rdfs:subClassOf risk:Object .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#AssetTouchContact
+risk:AssetTouchContact rdf:type owl:Class ;
+                       rdfs:subClassOf risk:Contact .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#BiologicalAgent
+risk:BiologicalAgent rdf:type owl:Class ;
+                     rdfs:subClassOf risk:RiskAgent .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Case
+risk:Case rdf:type owl:Class ;
+          rdfs:subClassOf risk:TemporalEvent ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty risk:caseManagedByOrganization ;
+                            owl:someValuesFrom risk:Organization
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty risk:hasCasePathogen ;
+                            owl:someValuesFrom risk:RiskAgent
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty risk:hasContact ;
+                            owl:someValuesFrom risk:Contact
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty risk:hasInfectionSite ;
+                            owl:someValuesFrom risk:InfectionSite
+                          ] .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#CaseAnalysis
+risk:CaseAnalysis rdf:type owl:Class ;
+                  rdfs:subClassOf risk:TemporalEvent .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Contact
+risk:Contact rdf:type owl:Class ;
+             rdfs:subClassOf risk:TemporalEvent ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty risk:hasEncounter ;
+                               owl:someValuesFrom risk:Encounter
+                             ] .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#ContaminatedAssetCase
+risk:ContaminatedAssetCase rdf:type owl:Class ;
+                           rdfs:subClassOf risk:Case .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#ContaminatedFixtureCase
+risk:ContaminatedFixtureCase rdf:type owl:Class ;
+                             rdfs:subClassOf risk:Case .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Encounter
+risk:Encounter rdf:type owl:Class ;
+               rdfs:subClassOf risk:TemporalEvent ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty risk:hasContact ;
+                                 owl:someValuesFrom risk:Contact
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty risk:hasContactTagAssignment ;
+                                 owl:someValuesFrom risk:TagAssignment
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty risk:hasSourceTagAssignment ;
+                                 owl:someValuesFrom risk:TagAssignment
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty risk:occursInZone ;
+                                 owl:someValuesFrom risk:Zone
+                               ] .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#FixtureVisitContact
+risk:FixtureVisitContact rdf:type owl:Class ;
+                         rdfs:subClassOf risk:Contact .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#InfectionSite
+risk:InfectionSite rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Installation
+risk:Installation rdf:type owl:Class ;
+                  rdfs:subClassOf risk:TrackingHardware ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty risk:hasSite ;
+                                    owl:someValuesFrom risk:Site
+                                  ] ;
+                  owl:disjointWith risk:Sensor .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Location
+risk:Location rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Map
+risk:Map rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Object
+risk:Object rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Organization
+risk:Organization rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#PairwiseDistance
+risk:PairwiseDistance rdf:type owl:Class ;
+                      rdfs:subClassOf risk:SpatialEvent .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Pathogen
+risk:Pathogen rdf:type owl:Class ;
+              rdfs:subClassOf risk:BiologicalAgent .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#PathogenPolicy
+risk:PathogenPolicy rdf:type owl:Class ;
+                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      owl:onProperty risk:policySetByOrganization ;
+                                      owl:someValuesFrom risk:Organization
+                                    ] .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Patient
+risk:Patient rdf:type owl:Class ;
+             rdfs:subClassOf risk:Person ;
+             owl:disjointWith risk:Staff .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Person
+risk:Person rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#PersonContact
+risk:PersonContact rdf:type owl:Class ;
+                   rdfs:subClassOf risk:Contact .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#PersonEncounter
+risk:PersonEncounter rdf:type owl:Class ;
+                     rdfs:subClassOf risk:Encounter .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#PersonInfectionCase
+risk:PersonInfectionCase rdf:type owl:Class ;
+                         rdfs:subClassOf risk:Case ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty risk:tracksPersonInfection ;
+                                           owl:someValuesFrom risk:Person
+                                         ] .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#RiskAgent
+risk:RiskAgent rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#RiskLevel
+risk:RiskLevel rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Sensor
+risk:Sensor rdf:type owl:Class ;
+            rdfs:subClassOf risk:TrackingHardware .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Site
+risk:Site rdf:type owl:Class ;
+          rdfs:subClassOf risk:Location ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty risk:siteOperatedByOrganization ;
+                            owl:someValuesFrom risk:Organization
+                          ] .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#SpatialEvent
+risk:SpatialEvent rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Staff
+risk:Staff rdf:type owl:Class ;
+           rdfs:subClassOf risk:Person .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Tag
+risk:Tag rdf:type owl:Class ;
+         rdfs:subClassOf risk:Sensor .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#TagAssignment
+risk:TagAssignment rdf:type owl:Class ;
+                   rdfs:subClassOf risk:TemporalEvent .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#TagPosition
+risk:TagPosition rdf:type owl:Class ;
+                 rdfs:subClassOf risk:SpatialEvent .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#TagPositionBlock
+risk:TagPositionBlock rdf:type owl:Class ;
+                      rdfs:subClassOf risk:SpatialEvent .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#TemporalEvent
+risk:TemporalEvent rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#TouchEncounter
+risk:TouchEncounter rdf:type owl:Class ;
+                    rdfs:subClassOf risk:Encounter .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#TrackingHardware
+risk:TrackingHardware rdf:type owl:Class .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#VisitEncounter
+risk:VisitEncounter rdf:type owl:Class ;
+                    rdfs:subClassOf risk:Encounter .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Zone
+risk:Zone rdf:type owl:Class ;
+          rdfs:subClassOf risk:Location ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty risk:locatedInArea ;
+                            owl:someValuesFrom risk:Area
+                          ] .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( risk:Area
+                risk:Site
+                risk:Zone
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( risk:AssetTouchContact
+                risk:FixtureVisitContact
+                risk:PersonContact
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( risk:Case
+                risk:CaseAnalysis
+                risk:Contact
+                risk:Encounter
+                risk:TagAssignment
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( risk:ContaminatedAssetCase
+                risk:ContaminatedFixtureCase
+                risk:PersonInfectionCase
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( risk:InfectionSite
+                risk:Location
+                risk:Object
+                risk:Organization
+                risk:PathogenPolicy
+                risk:Person
+                risk:RiskAgent
+                risk:RiskLevel
+                risk:SpatialEvent
+                risk:TemporalEvent
+                risk:TrackingHardware
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( risk:PairwiseDistance
+                risk:TagPosition
+                risk:TagPositionBlock
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( risk:PersonEncounter
+                risk:TouchEncounter
+                risk:VisitEncounter
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
