@@ -17,18 +17,6 @@ mappingId	MAPID-acf390305b82460395434ebda594c55c-PersonFirstName
 target		:Person_{Uid} :firstName {FirstName}^^xsd:string . 
 source		SELECT Uid, FirstName FROM dbo.People WHERE IsDeleted = 0;
 
-mappingId	MAPID-b13ebb8a285449f7ad87fcb317966291-PersonLastName
-target		:Person_{Uid} :lastName {LastName}^^xsd:string . 
-source		SELECT Uid, LastName FROM dbo.People WHERE IsDeleted = 0;
-
-mappingId	MAPID-960310be15d14cf4a051d9f7f09408f2-PersonEmail
-target		:Person_{Uid} :personEmail {Email}^^xsd:string . 
-source		SELECT Uid, Email FROM dbo.People WHERE IsDeleted = 0;
-
-mappingId	MAPID-c7171d0ae38e433ea374bb558f0bb174-PersonDOB
-target		:Person_{Uid} :personDateOfBirth {DateOfBirth}^^xsd:dateTime . 
-source		SELECT Uid, DateOfBirth FROM dbo.People WHERE IsDeleted = 0;
-
 mappingId	MAPID-708d01ead5814e38b58a39ea917ed230-PersonRoleMapping
 target		:Person_{Uid} :personRole {Role}^^xsd:string . 
 source		SELECT Uid, Role FROM dbo.People WHERE IsDeleted = 0;
@@ -229,22 +217,6 @@ mappingId	MAPID-a0b0cd58eae44190af359bf24c468398-TagSerial
 target		:Tag_{uid} :tagSerial {Serial}^^xsd:string . 
 source		SELECT Uid AS uid, Serial FROM dbo.Tags WHERE IsDeleted = 0;
 
-mappingId	MAPID-cfb46d7df7dd450fadf1665a3f5591ed-TagElectronicsId
-target		:Tag_{uid} :tagElectronicsId {ElectronicsId}^^xsd:string . 
-source		SELECT Uid AS uid, ElectronicsId FROM dbo.Tags WHERE IsDeleted = 0;
-
-mappingId	MAPID-8a04745566a74b09a1e98042fe121c3a-TagElectronicsType
-target		:Tag_{uid} :tagElectronicsType {ElectronicsType}^^xsd:string . 
-source		SELECT Uid AS uid, ElectronicsType FROM dbo.Tags WHERE IsDeleted = 0;
-
-mappingId	MAPID-e310896b0e6741a186cffbe5fabd2f58-TagHardwareVersion
-target		:Tag_{uid} :tagHardwareVersion {HardwareVersion}^^xsd:string . 
-source		SELECT Uid AS uid, HardwareVersion FROM dbo.Tags WHERE IsDeleted = 0;
-
-mappingId	MAPID-c43abd359dde490f9faa255c7822d51b-TagFirmwareVersion
-target		:Tag_{uid} :tagFirmwareVersion {FirmwareVersion}^^xsd:string . 
-source		SELECT Uid AS uid, FirmwareVersion FROM dbo.Tags WHERE IsDeleted = 0;
-
 mappingId	MAPID-a1df326e07c64ac3ab3258a99f018754-TagOrganizationUid
 target		:Tag_{uid} :tagOrganizationUid {OrganizationUid}^^xsd:string . 
 source		SELECT Uid AS uid, OrganizationUid FROM dbo.Tags WHERE IsDeleted = 0;
@@ -297,14 +269,6 @@ mappingId	MAPID-497952603041471fb632f2a5fcdff115-OrganizationName
 target		:Organization_{uid} :organizationName {Name}^^xsd:string . 
 source		SELECT Uid AS uid, Name FROM dbo.Organizations WHERE IsDeleted = 0;
 
-mappingId	MAPID-43057a86d6a941eca0359f1e103d44cb-OrganizationDateCreated
-target		:Organization_{uid} :organizationDateCreated {DateCreated}^^xsd:dateTime . 
-source		SELECT Uid AS uid, DateCreated FROM dbo.Organizations WHERE IsDeleted = 0;
-
-mappingId	MAPID-b1e8f5d9c43b4185ae329d392d4bfce5-OrganizationDateModified
-target		:Organization_{uid} :organizationDateModified {DateModified}^^xsd:dateTime . 
-source		SELECT Uid AS uid, DateModified FROM dbo.Organizations WHERE IsDeleted = 0;
-
 mappingId	MAPID-97aa8415e9714a94872b49c327705604-TagAssignmentHasCaseMapping-test-view
 target		:TagAssignment_{uid} :hasCase :Case_{caseId} . 
 source		SELECT Uid AS uid, CaseId AS caseId FROM v_tag_assignments_by_case WHERE IsDeleted = 0;
@@ -312,4 +276,188 @@ source		SELECT Uid AS uid, CaseId AS caseId FROM v_tag_assignments_by_case WHERE
 mappingId	MAPID-efa7d018d81c43b4a9910e3e67630cc7-TagPositionBlockOccursInZoneMapping-test
 target		:TagPositionBlock_{uid} :occursInZone :Zone_{zoneUid} . 
 source		SELECT Uid AS uid, ZoneUid AS zoneUid FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-f8647af1ff3640ee92da218e347afc7b-ContactHasContactRiskMapping
+target		:Contact_{uid} :hasContactRisk :RiskLevel_{riskLevel} . 
+source		SELECT Uid AS uid, Risk AS riskLevel
+			FROM dbo.Contacts
+			WHERE IsDeleted = 0
+			AND Risk IS NOT NULL
+
+mappingId	MAPID-10ee4624348c4a148865ef71a0dc6502-EncounterHasEncounterRiskMapping
+target		:Encounter_{uid} :hasEncounterRisk :RiskLevel_{riskLevel} . 
+source		SELECT Uid AS uid, Risk AS riskLevel
+			FROM dbo.Encounters
+			WHERE IsDeleted = 0
+			AND Risk IS NOT NULL
+
+mappingId	MAPID-78447bc1ce9544f394bff4657b92b03c-PairwiseDistanceAssignedMapping
+target		:PairwiseDistanceAssigned_{uid} a :PairwiseDistanceAssigned ; :occursInZone :Zone_{zoneUid} ; :pairwiseDistance {distance}^^xsd:decimal ; :pairwiseTagPositionBlockID {tagPositionBlockID}^^xsd:integer ; :pairwiseTimestampBlock {timestampBlock}^^xsd:dateTime ; :distanceBetweenTag1 :Tag_{tagSerial1} ; :distanceBetweenTag2 :Tag_{tagSerial2} ; :hasFirstAsset :Asset_{assetUid1} ; :hasSecondAsset :Asset_{assetUid2} ; :hasFirstPerson :Person_{personUid1} ; :hasSecondPerson :Person_{personUid2} . 
+source		SELECT
+			CONCAT(
+			CAST(TagPositionBlockID AS varchar(20)),
+			'_', CONVERT(varchar(19), TimestampBlock, 126)
+			)                                                AS uid,
+			ZoneUid                                          AS zoneUid,
+			Distance                                         AS distance,
+			TagPositionBlockID                               AS tagPositionBlockID,
+			TimestampBlock                                   AS timestampBlock,
+			TagSerial1                                       AS tagSerial1,
+			TagSerial2                                       AS tagSerial2,
+			AssetUid1                                        AS assetUid1,
+			AssetUid2                                        AS assetUid2,
+			PersonUid1                                       AS personUid1,
+			PersonUid2                                       AS personUid2
+			FROM dbo.v_pairwisedistances_assigned
+
+mappingId	MAPID-cbcfe6e696c0412d84c90ec27aee3fea-ContactHasContactRiskMapping
+target		:Contact_{uid} :hasContactRisk :{riskLevel} . 
+source		SELECT Uid AS uid, Risk AS riskLevel
+			FROM dbo.Contacts
+			WHERE IsDeleted = 0 AND Risk IS NOT NULL
+
+mappingId	MAPID-c3394d67391a4754a33f5b03ea2a9eb3-EncounterHasEncounterRiskMapping
+target		:Encounter_{uid} :hasEncounterRisk :{riskLevel} . 
+source		SELECT Uid AS uid, Risk AS riskLevel
+			FROM dbo.Encounters
+			WHERE IsDeleted = 0 AND Risk IS NOT NULL
+
+mappingId	MAPID-511b7c5293c94bab922cbb437ac53c2a-PathogenPolicyMapping
+target		:PathogenPolicy_{uid} a :PathogenPolicy . 
+source		SELECT Uid AS uid
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-7d012843036641f79068671e748c26c5-PathogenPolicyPathogen
+target		:PathogenPolicy_{uid} :pathogenPolicyPathogen {Pathogen}^^xsd:string . 
+source		SELECT Uid, Pathogen
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-8e3846d470a841f287204d0ce481ae33-PathogenPolicyInfectionSite
+target		:PathogenPolicy_{uid} :pathogenPolicyInfectionSite {InfectionSite}^^xsd:string . 
+source		SELECT Uid, InfectionSite
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-d9e20209e9844bc887a8928e0a7de8d5-PathogenPolicyCode
+target		:PathogenPolicy_{uid} :pathogenPolicyCode {Code}^^xsd:integer . 
+source		SELECT Uid, Code
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-451e9ac30f564cf28f904750e991dc50-PathogenPolicyName
+target		:PathogenPolicy_{uid} :pathogenPolicyName {Name}^^xsd:string . 
+source		SELECT Uid, Name
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-ac23e1aa7c13461dac633870d7cf717c-PathogenPolicyAbbreviation
+target		:PathogenPolicy_{uid} :pathogenPolicyAbbreviation {Abbreviation}^^xsd:string . 
+source		SELECT Uid, Abbreviation
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-5161dedf1c394493931a4d8eaaf17e26-PathogenPolicyDescription
+target		:PathogenPolicy_{uid} :pathogenPolicyDescription {Description}^^xsd:string . 
+source		SELECT Uid, Description
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-a5527337a9694043995455d1fc9ca7a4-PathogenPolicyIsAirborne
+target		:PathogenPolicy_{uid} :pathogenPolicyIsAirborne {IsAirborne}^^xsd:boolean . 
+source		SELECT Uid, IsAirborne
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-f18187409307414fbfd94e0497f4c25f-PathogenPolicyIsDroplet
+target		:PathogenPolicy_{uid} :pathogenPolicyIsDroplet {IsDroplet}^^xsd:boolean . 
+source		SELECT Uid, IsDroplet
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-48fea8f3ad994777b8bdc2c13f34f1ec-PathogenPolicyIsIndirect
+target		:PathogenPolicy_{uid} :pathogenPolicyIsIndirect {IsIndirect}^^xsd:boolean . 
+source		SELECT Uid, IsIndirect
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-84e820e114714b6fa5b9279cd894bc8b-PathogenPolicyIsDirect
+target		:PathogenPolicy_{uid} :pathogenPolicyIsDirect {IsDirect}^^xsd:boolean . 
+source		SELECT Uid, IsDirect
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-1b3f46ff42dc48f991ee4974d2aa2bc6-PathogenPolicyDistanceBoundaryCm
+target		:PathogenPolicy_{uid} :pathogenPolicyDistanceBoundaryCm {DistanceBoundaryCm}^^xsd:integer . 
+source		SELECT Uid, DistanceBoundaryCm
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-a0ffe12d0d7f46c7b208e64363621aa8-PathogenPolicyDistanceBoundaryBufferCm
+target		:PathogenPolicy_{uid} :pathogenPolicyDistanceBoundaryBufferCm {DistanceBoundaryBufferCm}^^xsd:integer . 
+source		SELECT Uid, DistanceBoundaryBufferCm
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-64c84cc6885c4c8095be7c80ecc371fd-PathogenPolicyDurationBoundaryMinutes
+target		:PathogenPolicy_{uid} :pathogenPolicyDurationBoundaryMinutes {DurationBoundaryMinutes}^^xsd:integer . 
+source		SELECT Uid, DurationBoundaryMinutes
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-aea307c822b44be3a40639f9c0f6c98c-PathogenPolicyDurationBoundaryBufferMinutes
+target		:PathogenPolicy_{uid} :pathogenPolicyDurationBoundaryBufferMinutes {DurationBoundaryBufferMinutes}^^xsd:integer . 
+source		SELECT Uid, DurationBoundaryBufferMinutes
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-96d4b913c247416b980d403dee139911-PathogenPolicyIndirectLingerMinutes
+target		:PathogenPolicy_{uid} :pathogenPolicyIndirectLingerMinutes {IndirectLingerMinutes}^^xsd:integer . 
+source		SELECT Uid, IndirectLingerMinutes
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-dc78093797d74bf8891d1884e91d194d-PathogenPolicyInfectiousDaysBeforeSymptoms
+target		:PathogenPolicy_{uid} :pathogenPolicyInfectiousDaysBeforeSymptoms {InfectiousDaysBeforeSymptoms}^^xsd:integer . 
+source		SELECT Uid, InfectiousDaysBeforeSymptoms
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-3bb053f9a8284c78a4d2fb278331145c-PathogenPolicyInfectiousDaysAfterSymptoms
+target		:PathogenPolicy_{uid} :pathogenPolicyInfectiousDaysAfterSymptoms {InfectiousDaysAfterSymptoms}^^xsd:integer . 
+source		SELECT Uid, InfectiousDaysAfterSymptoms
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-4f2b368c3d2b46ed93b8118076887809-PathogenPolicyIncubationPeriodMinHours
+target		:PathogenPolicy_{uid} :pathogenPolicyIncubationPeriodMinHours {IncubationPeriodMinHours}^^xsd:integer . 
+source		SELECT Uid, IncubationPeriodMinHours
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-5015e2caaa0542c9bf44e24c3809ad57-PathogenPolicyIncubationPeriodMaxHours
+target		:PathogenPolicy_{uid} :pathogenPolicyIncubationPeriodMaxHours {IncubationPeriodMaxHours}^^xsd:integer . 
+source		SELECT Uid, IncubationPeriodMaxHours
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-a3d64a861f944c489a9ede6a7c167373-PathogenPolicyPolicySetByOrganization
+target		:PathogenPolicy_{uid} :policySetByOrganization :Organization_{OrganizationUid} . 
+source		SELECT Uid, OrganizationUid
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-2aa0e81fecf5458bb12fdaf63e8b173f-PathogenPolicyPolicyForPathogen
+target		:PathogenPolicy_{uid} :policyForPathogen :RiskAgent_{Pathogen} . 
+source		SELECT Uid, Pathogen
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-ed8628a8e76b4dfaa5e52285e4015683-PathogenPolicyPolicyForInfectionSite
+target		:PathogenPolicy_{uid} :policyForInfectionSite :InfectionSite_{InfectionSite} . 
+source		SELECT Uid, InfectionSite
+			FROM dbo.PathogenPolicies
+			WHERE IsDeleted = 0
 ]]
+

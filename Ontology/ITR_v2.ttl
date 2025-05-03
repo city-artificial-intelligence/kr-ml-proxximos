@@ -23,7 +23,9 @@ risk:assetManagedByOrganization rdf:type owl:ObjectProperty ;
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#assetTypeManagedByOrganization
 risk:assetTypeManagedByOrganization rdf:type owl:ObjectProperty ;
-                                    rdfs:subPropertyOf owl:topObjectProperty .
+                                    rdfs:subPropertyOf owl:topObjectProperty ;
+                                    rdfs:domain risk:AssetType ;
+                                    rdfs:range risk:Organization .
 
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#assignedToAsset
@@ -77,7 +79,9 @@ risk:distanceBetweenTag2 rdf:type owl:ObjectProperty ;
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasAssetType
 risk:hasAssetType rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf owl:topObjectProperty .
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain risk:Asset ;
+                  rdfs:range risk:AssetType .
 
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasCase
@@ -103,6 +107,12 @@ risk:hasContact rdf:type owl:ObjectProperty ;
                 rdfs:range risk:Contact .
 
 
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasContactRisk
+risk:hasContactRisk rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf risk:hasRiskLevel ;
+                    rdfs:domain risk:Contact .
+
+
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasContactTagAssignment
 risk:hasContactTagAssignment rdf:type owl:ObjectProperty ;
                              rdfs:subPropertyOf owl:topObjectProperty ;
@@ -115,6 +125,26 @@ risk:hasEncounter rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
                   rdfs:domain risk:Contact ;
                   rdfs:range risk:Encounter .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasEncounterRisk
+risk:hasEncounterRisk rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf risk:hasRiskLevel ;
+                      rdfs:domain risk:Encounter .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasFirstAsset
+risk:hasFirstAsset rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:domain risk:PairwiseDistanceAssigned ;
+                   rdfs:range risk:Asset .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasFirstPerson
+risk:hasFirstPerson rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain risk:PairwiseDistanceAssigned ;
+                    rdfs:range risk:Person .
 
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasInfectionSite
@@ -130,6 +160,26 @@ risk:hasPathogenPolicy rdf:type owl:ObjectProperty ;
                        owl:inverseOf risk:policySetByOrganization ;
                        rdfs:domain risk:Organization ;
                        rdfs:range risk:PathogenPolicy .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasRiskLevel
+risk:hasRiskLevel rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:range risk:RiskLevel .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasSecondAsset
+risk:hasSecondAsset rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain risk:PairwiseDistanceAssigned ;
+                    rdfs:range risk:Asset .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasSecondPerson
+risk:hasSecondPerson rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:domain risk:PairwiseDistanceAssigned ;
+                     rdfs:range risk:Person .
 
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasSite
@@ -1285,6 +1335,10 @@ risk:AssetTouchContact rdf:type owl:Class ;
                        rdfs:subClassOf risk:Contact .
 
 
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#AssetType
+risk:AssetType rdf:type owl:Class .
+
+
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#BiologicalAgent
 risk:BiologicalAgent rdf:type owl:Class ;
                      rdfs:subClassOf risk:RiskAgent .
@@ -1320,6 +1374,10 @@ risk:CaseAnalysis rdf:type owl:Class ;
 risk:Contact rdf:type owl:Class ;
              rdfs:subClassOf risk:TemporalEvent ,
                              [ rdf:type owl:Restriction ;
+                               owl:onProperty risk:hasContactRisk ;
+                               owl:someValuesFrom risk:RiskLevel
+                             ] ,
+                             [ rdf:type owl:Restriction ;
                                owl:onProperty risk:hasEncounter ;
                                owl:someValuesFrom risk:Encounter
                              ] .
@@ -1345,6 +1403,10 @@ risk:Encounter rdf:type owl:Class ;
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty risk:hasContactTagAssignment ;
                                  owl:someValuesFrom risk:TagAssignment
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty risk:hasEncounterRisk ;
+                                 owl:someValuesFrom risk:RiskLevel
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty risk:hasSourceTagAssignment ;
@@ -1394,6 +1456,11 @@ risk:Organization rdf:type owl:Class .
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#PairwiseDistance
 risk:PairwiseDistance rdf:type owl:Class ;
                       rdfs:subClassOf risk:SpatialEvent .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#PairwiseDistanceAssigned
+risk:PairwiseDistanceAssigned rdf:type owl:Class ;
+                              rdfs:subClassOf risk:PairwiseDistance .
 
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#Pathogen
@@ -1514,6 +1581,30 @@ risk:Zone rdf:type owl:Class ;
                             owl:onProperty risk:locatedInArea ;
                             owl:someValuesFrom risk:Area
                           ] .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#High
+risk:High rdf:type owl:NamedIndividual ,
+                   risk:RiskLevel .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Low
+risk:Low rdf:type owl:NamedIndividual ,
+                  risk:RiskLevel .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Medium
+risk:Medium rdf:type owl:NamedIndividual ,
+                     risk:RiskLevel .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Null
+risk:Null rdf:type owl:NamedIndividual ,
+                   risk:RiskLevel .
 
 
 #################################################################
