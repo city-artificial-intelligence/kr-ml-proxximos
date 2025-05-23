@@ -17,7 +17,7 @@ The main components
 
 
 -	Definition of cascaded rules to determine if a contact or encounter occurs.
--	Define profiles for categories of proximity that indicate safety or risk.
+-	Define profiles for categories of proximity, duration and intensity that indicate safety or risk.
 -	Determine the limitations of rules structures to inform what is needed to identify a positive encounter.
 
 
