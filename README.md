@@ -1,6 +1,6 @@
 # Knowledge representation for infection transmission risk prediction
 
-This repository contains the intial pipeline for building an OWL Ontology / Knowledge Graph from a real-time data location system (RTLS) SQL Dataset. Ontop ODBA mappings and SPARQL rules are used to generate categorical proximity, duration and intensity ranges of encounter events to provide inputs for downstream rule mining and Machine Learning.
+This repository contains the intial pipeline for building an OWL Ontology / Knowledge Graph from a real-time data location system (RTLS) SQL Dataset. Ontop ODBA mappings and SPARQL rules are used to generate categorical proximity, duration and intensity ranges for encounter events to provide inputs for downstream rule mining and Machine Learning.
 
 ![alt text](screenshots/proxximos_arch.drawio.png)
 
