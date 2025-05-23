@@ -1,1 +1,1 @@
-# kr-ml-proxximos
+# Knowledge representation for infection transmission risk prediction
