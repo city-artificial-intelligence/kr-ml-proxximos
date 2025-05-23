@@ -120,6 +120,13 @@ risk:hasContactTagAssignment rdf:type owl:ObjectProperty ;
                              rdfs:range risk:TagAssignment .
 
 
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasDurationCategory
+risk:hasDurationCategory rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain risk:Encounter ;
+                         rdfs:range risk:DurationCategory .
+
+
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasEncounter
 risk:hasEncounter rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
@@ -154,12 +161,26 @@ risk:hasInfectionSite rdf:type owl:ObjectProperty ;
                       rdfs:range risk:InfectionSite .
 
 
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasIntensityCategory
+risk:hasIntensityCategory rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf owl:topObjectProperty ;
+                          rdfs:domain risk:Encounter ;
+                          rdfs:range risk:IntensityCategory .
+
+
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasPathogenPolicy
 risk:hasPathogenPolicy rdf:type owl:ObjectProperty ;
                        rdfs:subPropertyOf owl:topObjectProperty ;
                        owl:inverseOf risk:policySetByOrganization ;
                        rdfs:domain risk:Organization ;
                        rdfs:range risk:PathogenPolicy .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasProximityCategory
+risk:hasProximityCategory rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf owl:topObjectProperty ;
+                          rdfs:domain risk:Encounter ;
+                          rdfs:range risk:ProximityCategory .
 
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#hasRiskLevel
@@ -1393,6 +1414,10 @@ risk:ContaminatedFixtureCase rdf:type owl:Class ;
                              rdfs:subClassOf risk:Case .
 
 
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#DurationCategory
+risk:DurationCategory rdf:type owl:Class .
+
+
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#Encounter
 risk:Encounter rdf:type owl:Class ;
                rdfs:subClassOf risk:TemporalEvent ,
@@ -1415,6 +1440,10 @@ risk:Encounter rdf:type owl:Class ;
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty risk:occursInZone ;
                                  owl:someValuesFrom risk:Zone
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty risk:encounterIntensity ;
+                                 owl:someValuesFrom xsd:integer
                                ] .
 
 
@@ -1435,6 +1464,10 @@ risk:Installation rdf:type owl:Class ;
                                     owl:someValuesFrom risk:Site
                                   ] ;
                   owl:disjointWith risk:Sensor .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#IntensityCategory
+risk:IntensityCategory rdf:type owl:Class .
 
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#Location
@@ -1503,6 +1536,10 @@ risk:PersonInfectionCase rdf:type owl:Class ;
                                            owl:onProperty risk:tracksPersonInfection ;
                                            owl:someValuesFrom risk:Person
                                          ] .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#ProximityCategory
+risk:ProximityCategory rdf:type owl:Class .
 
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#RiskAgent
@@ -1587,9 +1624,39 @@ risk:Zone rdf:type owl:Class ;
 #    Individuals
 #################################################################
 
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Close
+risk:Close rdf:type owl:NamedIndividual ,
+                    risk:ProximityCategory .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Distant
+risk:Distant rdf:type owl:NamedIndividual ,
+                      risk:ProximityCategory .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Extended
+risk:Extended rdf:type owl:NamedIndividual ,
+                       risk:DurationCategory .
+
+
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#High
 risk:High rdf:type owl:NamedIndividual ,
                    risk:RiskLevel .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#HighIntensity
+risk:HighIntensity rdf:type owl:NamedIndividual ,
+                            risk:IntensityCategory .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Instantaneous
+risk:Instantaneous rdf:type owl:NamedIndividual ,
+                            risk:DurationCategory .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Intimate
+risk:Intimate rdf:type owl:NamedIndividual ,
+                       risk:ProximityCategory .
 
 
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#Low
@@ -1602,9 +1669,49 @@ risk:Medium rdf:type owl:NamedIndividual ,
                      risk:RiskLevel .
 
 
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#MinimalIntensity
+risk:MinimalIntensity rdf:type owl:NamedIndividual ,
+                               risk:IntensityCategory .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Moderate
+risk:Moderate rdf:type owl:NamedIndividual ,
+                       risk:ProximityCategory .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#ModerateIntensity
+risk:ModerateIntensity rdf:type owl:NamedIndividual ,
+                                risk:IntensityCategory .
+
+
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#Null
 risk:Null rdf:type owl:NamedIndividual ,
                    risk:RiskLevel .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Prolonged
+risk:Prolonged rdf:type owl:NamedIndividual ,
+                        risk:DurationCategory .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#Short
+risk:Short rdf:type owl:NamedIndividual ,
+                    risk:DurationCategory .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#VeryBrief
+risk:VeryBrief rdf:type owl:NamedIndividual ,
+                        risk:DurationCategory .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#VeryClose
+risk:VeryClose rdf:type owl:NamedIndividual ,
+                        risk:ProximityCategory .
+
+
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#VeryProlonged
+risk:VeryProlonged rdf:type owl:NamedIndividual ,
+                            risk:DurationCategory .
 
 
 #################################################################
@@ -1623,6 +1730,27 @@ risk:Null rdf:type owl:NamedIndividual ,
   owl:members ( risk:AssetTouchContact
                 risk:FixtureVisitContact
                 risk:PersonContact
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( risk:AssetType
+                risk:DurationCategory
+                risk:InfectionSite
+                risk:IntensityCategory
+                risk:Location
+                risk:Map
+                risk:Object
+                risk:Organization
+                risk:PathogenPolicy
+                risk:Person
+                risk:ProximityCategory
+                risk:RiskAgent
+                risk:RiskLevel
+                risk:SpatialEvent
+                risk:TemporalEvent
+                risk:TrackingHardware
               )
 ] .
 

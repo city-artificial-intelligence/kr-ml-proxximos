@@ -459,5 +459,44 @@ target		:PathogenPolicy_{uid} :policyForInfectionSite :InfectionSite_{InfectionS
 source		SELECT Uid, InfectionSite
 			FROM dbo.PathogenPolicies
 			WHERE IsDeleted = 0
+
+mappingId	MAPID-b4adb8d3aad54e87a44a17585d24e941-ProximityCategoryMapping
+target		:Encounter_{EncounterUid} :hasProximityCategory :{ProxCat} . 
+source		SELECT Uid AS EncounterUid, 
+			CASE
+			WHEN AverageDistance < 0.25 THEN 'Intimate'
+			WHEN AverageDistance < 0.5  THEN 'VeryClose'
+			WHEN AverageDistance < 1.0  THEN 'Close'
+			WHEN AverageDistance < 2.0  THEN 'Moderate'
+			ELSE 'Distant'
+			END
+			AS ProxCat
+			FROM dbo.Encounters
+			WHERE IsDeleted = 0
+
+mappingId	MAPID-375dbcfc719a496e82a6207f9bdc1c3d-DurationCategoryMapping
+target		:Encounter_{EncounterUid} :hasDurationCategory :{DurCat} . 
+source		SELECT EncounterUid,
+			CASE
+			WHEN DurationSec <   5   THEN 'Instantaneous'
+			WHEN DurationSec <  30   THEN 'VeryBrief'
+			WHEN DurationSec < 300   THEN 'Short'
+			WHEN DurationSec < 900   THEN 'Extended'
+			WHEN DurationSec < 3600  THEN 'Prolonged'
+			ELSE 'VeryProlonged'
+			END AS DurCat
+			FROM dbo.v_EncounterDurations ;
+
+mappingId	MAPID-98f47b46209f4d549a28e0b65384b78c-IntensityCategoryMapping
+target		:Encounter_{EncounterUid} :hasIntensityCategory :{IntCat} . 
+source		SELECT Uid AS EncounterUid,
+			CASE
+			WHEN Intensity <= 1.56 THEN 'MinimalIntensity'
+			WHEN Intensity <= 4.45 THEN 'ModerateIntensity'
+			ELSE 'HighIntensity'
+			END
+			AS IntCat
+			FROM dbo.Encounters
+			WHERE IsDeleted = 0
 ]]
 
