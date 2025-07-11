@@ -1,0 +1,81 @@
+[PrefixDeclaration]
+:		http://www.proxximos.com/ontology/InfectionTransferRisk#
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+risk:		http://www.proxximos.com/ontology/InfectionTransferRisk#
+
+[MappingDeclaration] @collection [[
+mappingId	MAPID-d1e9a7bb5b064bf9a8d558f9d995e103-PersonMapping
+target		:Person_{Uid} a :Person . 
+source		SELECT Uid FROM dbo.People WHERE IsDeleted = 0;
+
+mappingId	MAPID-708d01ead5814e38b58a39ea917ed230-PersonRoleMapping
+target		:Person_{Uid} :personRole {Role}^^xsd:string . 
+source		SELECT Uid, Role FROM dbo.People WHERE IsDeleted = 0;
+
+mappingId	MAPID-2b43c2a90bbf4a3e88e821058e26fbdd-TagAssignmentMapping
+target		:TagAssignment_{uid} a :TagAssignment . 
+source		SELECT Uid AS uid FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-7719d94b90c64f51b5108dc78f4002f0-TagAssignmentTagSerial
+target		:TagAssignment_{uid} :tagAssignmenTagSerial {Serial}^^xsd:string . 
+source		SELECT Uid AS uid, Serial FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-6f14c37a315b4a0e951589f0bc8cfd5e-TagAssignmentEndTimeMapping
+target		:TagAssignment_{uid} :tagAssignmentEndTime {endTime}^^xsd:dateTime . 
+source		SELECT Uid AS uid, [End] AS endTime FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-1122cd20fb304e3296d422d66ee0f0a9-TagAssignmentStartTime
+target		:TagAssignment_{uid} :tagAssignmentStartTime {Start}^^xsd:dateTime . 
+source		SELECT Uid AS uid, Start FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-992f33873fe04e2fa9117fe2b1293889-TagAssignmentHasTag
+target		:TagAssignment_{uid} :hasTagAssignment :Tag_{tagId} . 
+source		SELECT Uid AS uid, TagID AS tagId FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-fdf26a6a1cf9473286048abbe0f0114a-TagAssignmentAssignedToPerson
+target		:TagAssignment_{uid} :assignedToPerson :Person_{personId} . 
+source		SELECT Uid AS uid, PersonUid AS personId FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-b4f4f26e4b5e4325ad50697dafa962fb-TagAssignmentAssignedToAsset
+target		:TagAssignment_{uid} :assignedToAsset :Asset_{assetId} . 
+source		SELECT Uid AS uid, AssetUid AS assetId FROM dbo.TagAssignments WHERE IsDeleted = 0;
+
+mappingId	MAPID-a616aa6049ee4af88355f559ece085e6-TagMapping
+target		:Tag_{uid} a :Tag . 
+source		SELECT Uid AS uid FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-a0b0cd58eae44190af359bf24c468398-TagSerial
+target		:Tag_{uid} :tagSerial {Serial}^^xsd:string . 
+source		SELECT Uid AS uid, Serial FROM dbo.Tags WHERE IsDeleted = 0;
+
+mappingId	MAPID-ee7cb47a92fd435c8f07e6148c715be2-TagPositionBlockMapping
+target		:TagPositionBlock_{uid} a :TagPositionBlock . 
+source		SELECT Uid AS uid FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-12d71c2a919e4948be2f4f220a815092-TagPositionBlockUid
+target		:TagPositionBlock_{uid} :tagPositionBlockUid {uid}^^xsd:string . 
+source		SELECT Uid AS uid FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-8681d7094cac45719193a90708481dec-TagPositionBlockTagSerial
+target		:TagPositionBlock_{uid} :tagPositionBlockTagSerial {TagSerial}^^xsd:string . 
+source		SELECT Uid AS uid, TagSerial FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-c2f2895074844a96bf99b6efa6d95bf3-TagPositionBlockTimestamp
+target		:TagPositionBlock_{uid} :tagPositionBlockTimestamp {Timestamp}^^xsd:dateTime . 
+source		SELECT Uid AS uid, Timestamp FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-ca615637c1694f5cab7a9fe936d9e700-TagPositionBlockDuration
+target		:TagPositionBlock_{uid} :tagPositionBlockDuration {Duration}^^xsd:integer . 
+source		SELECT Uid AS uid, Duration FROM dbo.TagPositionBlocks;
+
+mappingId	MAPID-69ef3b3ae158473cb42cbf0900a12b70-TagXYPos
+target		:TagPositionBlock_{uid} :hasXCoordinate {x}^^xsd:double ; :hasYCoordinate {y}^^xsd:double . 
+source		SELECT uid, x, y FROM dbo.v_TagXYPos
+			WHERE IsInterpolated = 0
+]]
+
