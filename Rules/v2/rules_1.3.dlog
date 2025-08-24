@@ -1,0 +1,162 @@
+# 26 rules (11 Low + 4 Medium + 11 High)
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Close              ],
+    [ ?enc, :hasDurationCategory,   risk:Instantaneous      ].
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Close              ],
+    [ ?enc, :hasDurationCategory,   risk:VeryBrief           ].
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Moderate           ],
+    [ ?enc, :hasDurationCategory,   risk:Instantaneous      ].
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Moderate           ],
+    [ ?enc, :hasDurationCategory,   risk:VeryBrief           ].
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Moderate           ],
+    [ ?enc, :hasDurationCategory,   risk:Short               ].
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Distant            ],
+    [ ?enc, :hasDurationCategory,   risk:Instantaneous      ].
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Distant            ],
+    [ ?enc, :hasDurationCategory,   risk:VeryBrief           ].
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Distant            ],
+    [ ?enc, :hasDurationCategory,   risk:Short               ].
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Distant            ],
+    [ ?enc, :hasDurationCategory,   risk:Extended            ].
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Distant            ],
+    [ ?enc, :hasDurationCategory,   risk:Prolonged           ].
+
+[ ?enc, :hasEncounterRisk, risk:Low ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Distant            ],
+    [ ?enc, :hasDurationCategory,   risk:VeryProlonged       ].
+
+
+
+
+[ ?enc, :hasEncounterRisk, risk:Medium ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:VeryClose          ],
+    [ ?enc, :hasDurationCategory,   risk:Instantaneous      ].
+
+[ ?enc, :hasEncounterRisk, risk:Medium ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:VeryClose          ],
+    [ ?enc, :hasDurationCategory,   risk:VeryBrief           ].
+
+[ ?enc, :hasEncounterRisk, risk:Medium ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Close              ],
+    [ ?enc, :hasDurationCategory,   risk:Short               ].
+
+[ ?enc, :hasEncounterRisk, risk:Medium ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Moderate           ],
+    [ ?enc, :hasDurationCategory,   risk:Extended            ].
+
+
+
+
+# Intimate at any duration
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Intimate           ],
+    [ ?enc, :hasDurationCategory,   risk:Instantaneous      ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Intimate           ],
+    [ ?enc, :hasDurationCategory,   risk:VeryBrief           ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Intimate           ],
+    [ ?enc, :hasDurationCategory,   risk:Short               ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Intimate           ],
+    [ ?enc, :hasDurationCategory,   risk:Extended            ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Intimate           ],
+    [ ?enc, :hasDurationCategory,   risk:Prolonged           ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Intimate           ],
+    [ ?enc, :hasDurationCategory,   risk:VeryProlonged       ].
+
+# VeryClose & longer durations
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:VeryClose          ],
+    [ ?enc, :hasDurationCategory,   risk:Short               ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:VeryClose          ],
+    [ ?enc, :hasDurationCategory,   risk:Extended            ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:VeryClose          ],
+    [ ?enc, :hasDurationCategory,   risk:Prolonged           ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:VeryClose          ],
+    [ ?enc, :hasDurationCategory,   risk:VeryProlonged       ].
+
+# Close & longer durations
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Close              ],
+    [ ?enc, :hasDurationCategory,   risk:Extended            ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Close              ],
+    [ ?enc, :hasDurationCategory,   risk:Prolonged           ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Close              ],
+    [ ?enc, :hasDurationCategory,   risk:VeryProlonged       ].
+
+# Moderate & long durations
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Moderate           ],
+    [ ?enc, :hasDurationCategory,   risk:Prolonged           ].
+
+[ ?enc, :hasEncounterRisk, risk:High ] :-
+    [ ?enc, rdf:type,               risk:PersonEncounter    ],
+    [ ?enc, :hasProximityCategory,  risk:Moderate           ],
+    [ ?enc, :hasDurationCategory,   risk:VeryProlonged       ].
+
