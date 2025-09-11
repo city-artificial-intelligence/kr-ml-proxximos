@@ -20,4 +20,4 @@ The main components
 -	Defined profiles for categories of proximity, duration to stratify risk.
 -	Determine the limitations of rules structures to inform what is needed to identify a positive encounter.
 
-![alt text](screenshots/rules.png)
+![alt text](screenshots/Rules.png)
