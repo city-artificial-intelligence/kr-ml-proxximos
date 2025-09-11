@@ -66,8 +66,10 @@ target		:TagPositionBlock_{uid} :tagPositionBlockTagSerial {TagSerial}^^xsd:stri
 source		SELECT Uid AS uid, TagSerial FROM dbo.TagPositionBlocks;
 
 mappingId	MAPID-c2f2895074844a96bf99b6efa6d95bf3-TagPositionBlockTimestamp
-target		:TagPositionBlock_{uid} :tagPositionBlockTimestamp {Timestamp}^^xsd:dateTime . 
-source		SELECT Uid AS uid, Timestamp FROM dbo.TagPositionBlocks;
+target		:TagPositionBlock_{uid} :tagPositionBlockTimestamp {timestamp}^^xsd:dateTime ; :tagPositionBlockEndTime {endTime}^^xsd:dateTime ; :tagPositionBlockDuration {duration}^^xsd:integer ; :tagPositionBlockTagSerial {tagSerial}^^xsd:string . 
+source		SELECT Uid AS uid, CONVERT(varchar(23), Timestamp, 126) AS timestamp, CONVERT(varchar(23), DATEADD(SECOND, Duration, Timestamp), 126) AS endTime, Duration AS duration, TagSerial AS tagSerial
+			FROM dbo.TagPositionBlocks
+			WHERE IsInterpolated = 0
 
 mappingId	MAPID-ca615637c1694f5cab7a9fe936d9e700-TagPositionBlockDuration
 target		:TagPositionBlock_{uid} :tagPositionBlockDuration {Duration}^^xsd:integer . 
@@ -76,6 +78,29 @@ source		SELECT Uid AS uid, Duration FROM dbo.TagPositionBlocks;
 mappingId	MAPID-69ef3b3ae158473cb42cbf0900a12b70-TagXYPos
 target		:TagPositionBlock_{uid} :hasXCoordinate {x}^^xsd:double ; :hasYCoordinate {y}^^xsd:double . 
 source		SELECT uid, x, y FROM dbo.v_TagXYPos
-			WHERE IsInterpolated = 0
+			WHERE isInterPolated = 0
+
+mappingId	MAPID-928b84cdb03147d69a4e61b866463745-TagAssignmentWithSyntheticEnd
+target		:TagAssignment_{uid} a :TagAssignment ; :tagAssignmentStartTime {startTime}^^xsd:dateTime ; :tagAssignmentEndTime {endTime}^^xsd:dateTime ; :tagAssignmenTagSerial {Serial}^^xsd:string ; :assignedToPerson :Person_{personId} . 
+source		SELECT
+			             t.Uid AS uid,
+			             CONVERT(varchar(23), t.[Start], 126) AS startTime,
+			             COALESCE(
+			               CONVERT(varchar(23), t.[End], 126),
+			               (SELECT MIN(CONVERT(varchar(23), t2.[Start], 126))
+			                FROM dbo.TagAssignments AS t2
+			                WHERE t2.IsDeleted = 0
+			                  AND t2.Serial = t.Serial
+			                  AND t2.[Start] > t.[Start]),
+			               (SELECT CONVERT(varchar(23),
+			                       DATEADD(second, 1, MAX(DATEADD(second, b.Duration, b.Timestamp))), 126)
+			                FROM dbo.TagPositionBlocks AS b
+			                WHERE b.TagSerial = t.Serial),
+			               '2099-12-31T23:59:59'
+			             ) AS endTime,
+			             t.Serial AS Serial,
+			             t.PersonUid AS personId
+			           FROM dbo.TagAssignments AS t
+			           WHERE t.IsDeleted = 0
 ]]
 

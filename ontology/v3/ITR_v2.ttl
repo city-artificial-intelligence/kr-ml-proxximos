@@ -1227,6 +1227,13 @@ risk:tagPositionBlockDuration rdf:type owl:DatatypeProperty ;
                               rdfs:range xsd:integer .
 
 
+###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionBlockEndTime
+risk:tagPositionBlockEndTime rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf owl:topDataProperty ;
+                             rdfs:domain risk:TagPositionBlock ;
+                             rdfs:range xsd:dateTime .
+
+
 ###  http://www.proxximos.com/ontology/InfectionTransferRisk#tagPositionBlockIsInterpolated
 risk:tagPositionBlockIsInterpolated rdf:type owl:DatatypeProperty ;
                                     rdfs:subPropertyOf owl:topDataProperty ;
